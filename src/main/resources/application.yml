@@ -1,0 +1,22 @@
+spring:
+    profiles.active: dev
+    application:
+        name: order-system
+    jpa:
+        hibernate:
+            ddl-auto: none
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show-sql: true
+    datasource:
+        url: jdbc:mysql://localhost:3306/order-system?useSSL=false
+        username: root
+        password:
+        testWhileIdle: true
+        validationQuery: SELECT 1
+
+kafka:
+    brokerList: LOCALHOST:9092
+    smsTopic: SMS_KAFKA_TOPIC
+    emailTopic: EMAIL_KAFKA_TOPIC
+    invoiceTopic: INVOICE_KAFKA_TOPIC
