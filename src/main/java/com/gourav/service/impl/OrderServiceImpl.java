@@ -23,24 +23,24 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private KafkaProducers kafkaProducers;
 
-    @Value("{kafka.smsTopic}")
+    @Value("${kafkaTopics.smsTopic:#{NULL}}")
     private String smsTopic;
 
-    @Value("{kafka.emailTopic}")
+    @Value("${kafkaTopics.emailTopic:#{NULL}}")
     private String emailTopic;
 
-    @Value("{kafka.invoiceTopic}")
+    @Value("${kafkaTopics.invoiceTopic:#{NULL}}")
     private String invoiceTopic;
 
     @Autowired
     private OrderRepository orderRepository;
 
+    @Override
     public void processOrder(Orders orders) {
         try {
             String invoiceId = generateInvoiceId();
             orders.setInvoiceId(invoiceId);
             orderRepository.save(orders);
-
 
             // Sending only invoice id because in  real system components
             // can depend on other components as well

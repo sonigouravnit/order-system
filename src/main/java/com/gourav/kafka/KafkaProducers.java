@@ -19,7 +19,7 @@ public class KafkaProducers {
 
     private final Logger logger = LoggerFactory.getLogger(KafkaProducers.class);
 
-    @Value("{kafka.brokerList}")
+    @Value("${kafkaConsumer.bootstrapServers}")
     private String kafkaBrokerList;
 
     @Autowired

@@ -4,7 +4,7 @@ spring:
         name: order-system
     jpa:
         hibernate:
-            ddl-auto: none
+            ddl-auto: update
             dialect: org.hibernate.dialect.MySQL5Dialect
             naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         show-sql: true
@@ -15,8 +15,22 @@ spring:
         testWhileIdle: true
         validationQuery: SELECT 1
 
-kafka:
-    brokerList: LOCALHOST:9092
-    smsTopic: SMS_KAFKA_TOPIC
-    emailTopic: EMAIL_KAFKA_TOPIC
-    invoiceTopic: INVOICE_KAFKA_TOPIC
+kafkaConsumer:
+  bootstrapServers: xx.xx.xx.xx:9092 # update this url
+  groupId: ORDER_SYSTEM_GROUP_ID
+
+kafkaTopics:
+  smsTopic: SMS_TOPIC
+  emailTopic: EMAIL_TOPIC
+  invoiceTopic: INVOICE_TOPIC
+
+
+pdfLocation: /Users/gouravsoni/Desktop/
+
+email:
+  from: gourav@gmail.com # update this
+  password: userPassword # update this
+  smtpHost: smtp.gmail.com
+  smtpPort: 587
+  body: this is order confirmation email.
+  fileNotFoundMsg: Invoice will be sent shortly.

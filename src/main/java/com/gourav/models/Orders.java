@@ -5,10 +5,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrePersist;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by gouravsoni on 23/01/18.
@@ -19,7 +18,7 @@ public class Orders {
 
     // I have included User detail in same table which can be separated out in User table
 
-
+    @Id
     @Column(name = "INVOICE_ID", unique = true)
     private String invoiceId;
 
@@ -39,6 +38,9 @@ public class Orders {
 
     @Column(name = "INVOICE_PATH")
     private String invoiceLocation;
+
+    @Column(name = "EMAIL_SENT")
+    private boolean isEmailSent;
 
     public String getInvoiceId() {
         return invoiceId;
@@ -86,5 +88,13 @@ public class Orders {
 
     public void setInvoiceLocation(String invoiceLocation) {
         this.invoiceLocation = invoiceLocation;
+    }
+
+    public boolean isEmailSent() {
+        return isEmailSent;
+    }
+
+    public void setEmailSent(boolean emailSent) {
+        isEmailSent = emailSent;
     }
 }
